@@ -15,11 +15,11 @@ search_params = dict(checks = 100)
 flann = cv2.FlannBasedMatcher(index_params, search_params)
 
 kpt = []
-dest = []
-for i in range(5):
-    kptemp, destemp = orb.detectAndCompute(glo[i], None)
-    kpt.append(kptemp)
-    dest.append(np.float32(destemp))
+dest = [np.float32(orb.detectAndCompute(cv2.imread('semaforo_t_%d.png' % i), None)[1]) for i in range(1,6)]
+#for i in range(5):
+#    kptemp, destemp = orb.detectAndCompute(glo[i], None)
+#    kpt.append(kptemp)
+#    dest.append(np.float32(destemp))
 
 colores = ['verde', 'amarillo', 'rojo','apagado 1', 'apagado 2']
 cap= cv2.VideoCapture(0)
